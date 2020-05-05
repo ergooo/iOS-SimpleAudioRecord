@@ -53,8 +53,8 @@
 		573B8FEA24611804006B2CC6 = {
 			isa = PBXGroup;
 			children = (
-				573B8FF624611804006B2CC6 /* SimpleAudioRecord */,
-				573B900124611804006B2CC6 /* SimpleAudioRecordTests */,
+				573B8FF624611804006B2CC6 /* Source */,
+				573B900124611804006B2CC6 /* Tests */,
 				573B8FF524611804006B2CC6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,22 +68,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		573B8FF624611804006B2CC6 /* SimpleAudioRecord */ = {
+		573B8FF624611804006B2CC6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				573B8FF724611804006B2CC6 /* SimpleAudioRecord.h */,
 				573B8FF824611804006B2CC6 /* Info.plist */,
 			);
-			path = SimpleAudioRecord;
+			path = Source;
 			sourceTree = "<group>";
 		};
-		573B900124611804006B2CC6 /* SimpleAudioRecordTests */ = {
+		573B900124611804006B2CC6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				573B900224611804006B2CC6 /* SimpleAudioRecordTests.swift */,
 				573B900424611804006B2CC6 /* Info.plist */,
 			);
-			path = SimpleAudioRecordTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
