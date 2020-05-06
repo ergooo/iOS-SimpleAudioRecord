@@ -55,6 +55,7 @@
 		573B8FEA24611804006B2CC6 = {
 			isa = PBXGroup;
 			children = (
+				5772331024629B2F003BF84E /* Resources */,
 				573B8FF624611804006B2CC6 /* Source */,
 				573B900124611804006B2CC6 /* Tests */,
 				573B8FF524611804006B2CC6 /* Products */,
@@ -74,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				573B8FF724611804006B2CC6 /* SimpleAudioRecord.h */,
-				573B8FF824611804006B2CC6 /* Info.plist */,
 				576C012D2461B04300547A8D /* SimpleAudioRecord.swift */,
 			);
 			path = Source;
@@ -87,6 +87,14 @@
 				573B900424611804006B2CC6 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		5772331024629B2F003BF84E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				573B8FF824611804006B2CC6 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,7 +359,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SimpleAudioRecord/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -376,7 +384,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SimpleAudioRecord/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

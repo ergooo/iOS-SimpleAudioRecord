@@ -15,6 +15,8 @@
 		576C0148246290E800547A8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 576C0146246290E800547A8D /* LaunchScreen.storyboard */; };
 		576C0153246290E800547A8D /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C0152246290E800547A8D /* ExampleTests.swift */; };
 		576C015E246290E800547A8D /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C015D246290E800547A8D /* ExampleUITests.swift */; };
+		576C016D246293BA00547A8D /* SimpleAudioRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576C016C246293BA00547A8D /* SimpleAudioRecord.framework */; };
+		576C016E246293BA00547A8D /* SimpleAudioRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 576C016C246293BA00547A8D /* SimpleAudioRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		576C016F246293BB00547A8D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				576C016E246293BA00547A8D /* SimpleAudioRecord.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		576C0138246290E400547A8D /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		576C013B246290E400547A8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +65,7 @@
 		576C0159246290E800547A8D /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		576C015D246290E800547A8D /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		576C015F246290E800547A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		576C016C246293BA00547A8D /* SimpleAudioRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleAudioRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				576C016D246293BA00547A8D /* SimpleAudioRecord.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +97,12 @@
 		576C012F246290E400547A8D = {
 			isa = PBXGroup;
 			children = (
+				5772330F246299FA003BF84E /* Resources */,
 				576C013A246290E400547A8D /* Source */,
 				576C0151246290E800547A8D /* Tests */,
 				576C015C246290E800547A8D /* UITests */,
 				576C0139246290E400547A8D /* Products */,
+				576C016B246293BA00547A8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,10 +122,6 @@
 				576C013B246290E400547A8D /* AppDelegate.swift */,
 				576C013D246290E400547A8D /* SceneDelegate.swift */,
 				576C013F246290E400547A8D /* ContentView.swift */,
-				576C0141246290E800547A8D /* Assets.xcassets */,
-				576C0146246290E800547A8D /* LaunchScreen.storyboard */,
-				576C0149246290E800547A8D /* Info.plist */,
-				576C0143246290E800547A8D /* Preview Content */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -136,6 +152,25 @@
 			path = UITests;
 			sourceTree = "<group>";
 		};
+		576C016B246293BA00547A8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				576C016C246293BA00547A8D /* SimpleAudioRecord.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5772330F246299FA003BF84E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				576C0149246290E800547A8D /* Info.plist */,
+				576C0143246290E800547A8D /* Preview Content */,
+				576C0146246290E800547A8D /* LaunchScreen.storyboard */,
+				576C0141246290E800547A8D /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +181,7 @@
 				576C0134246290E400547A8D /* Sources */,
 				576C0135246290E400547A8D /* Frameworks */,
 				576C0136246290E400547A8D /* Resources */,
+				576C016F246293BB00547A8D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -435,9 +471,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Example/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Example/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,9 +490,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Example/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Example/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
