@@ -12,7 +12,7 @@ import SimpleAudioRecord
 struct ContentView: View {
     @State var pcm: Data = Data()
 
-    private let audioRecord = SimpleAudioRecord(audioConfig: AudioConfig(sampleRate: 16000, bitsParChannel: 16, channelsPerFrame: 1))
+    private let audioRecord = SimpleAudioRecord(audioConfig: AudioConfig(sampleRate: 16000, bitsPerChannel: 16, channelsPerFrame: 1))
 
     var body: some View {
         VStack {

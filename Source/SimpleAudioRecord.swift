@@ -18,6 +18,7 @@ public class SimpleAudioRecord {
         self.audioConfig = audioConfig
     }
 
+    /// Start recording. Do nothing when it called during recording.
     public func startRecording() {
         if audioQueue != nil {
             return
@@ -29,6 +30,7 @@ public class SimpleAudioRecord {
         }
     }
     
+    /// Stop recording. Do nothing if not recording.
     public func stopRecording() {
         if let audioQueue = audioQueue {
             AudioQueueStop(audioQueue, true)
@@ -46,7 +48,7 @@ public class SimpleAudioRecord {
             mFramesPerPacket: UInt32(audioConfig.framesPerPacket),
             mBytesPerFrame: UInt32(audioConfig.bytesPerFrame),
             mChannelsPerFrame: UInt32(audioConfig.channelsPerFrame),
-            mBitsPerChannel: UInt32(audioConfig.bitsParChannel),
+            mBitsPerChannel: UInt32(audioConfig.bitsPerChannel),
             mReserved: 0
          )
                 

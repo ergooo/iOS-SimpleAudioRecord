@@ -8,21 +8,28 @@
 
 import Foundation
 
+///
+/// Configuration about audio source.
+///
 public struct AudioConfig {
     let sampleRate: Int
-    let bitsParChannel: Int
+    let bitsPerChannel: Int
     let channelsPerFrame: Int
     
     let framesPerPacket = 1
     let bytesPerFrame :Int
     let bytesPerPacket :Int
 
-    public init(sampleRate: Int, bitsParChannel: Int, channelsPerFrame: Int) {
+    ///
+    /// - Parameter sampleRate: Sampling rate in Hz like 16000, 48000.
+    /// - Parameter bitsPerChannel: Like 8bits, 16bits.
+    /// - Parameter channelsPerFrame: Number of input channels. You may increase this number depending on the number of microphones in each device.
+    public init(sampleRate: Int, bitsPerChannel: Int, channelsPerFrame: Int) {
         self.sampleRate = sampleRate
-        self.bitsParChannel = bitsParChannel
+        self.bitsPerChannel = bitsPerChannel
         self.channelsPerFrame = channelsPerFrame
         
-        bytesPerFrame = bitsParChannel / 8 * channelsPerFrame
+        bytesPerFrame = bitsPerChannel / 8 * channelsPerFrame
         bytesPerPacket = bytesPerFrame * framesPerPacket
     }
 }
