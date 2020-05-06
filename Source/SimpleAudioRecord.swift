@@ -46,28 +46,25 @@ public class SimpleAudioRecord {
         }
     }
     
-    private func prepare() {
-         var format = AudioStreamBasicDescription(
-            mSampleRate: Float64(audioConfig.sampleRate),
-            mFormatID: kAudioFormatLinearPCM,
-            mFormatFlags: AudioFormatFlags(kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked),
-            mBytesPerPacket: UInt32(audioConfig.bytesPerPacket),
-            mFramesPerPacket: UInt32(audioConfig.framesPerPacket),
-            mBytesPerFrame: UInt32(audioConfig.bytesPerFrame),
-            mChannelsPerFrame: UInt32(audioConfig.channelsPerFrame),
-            mBitsPerChannel: UInt32(audioConfig.bitsPerChannel),
-            mReserved: 0
-         )
-                
-        AudioQueueNewInput(
-            &format,
-            callback,
-            Unmanaged<SimpleAudioRecord>.passUnretained(self).toOpaque(),
-            nil,
-            nil,
-            0,
-            &audioQueue
+    private func toAudioStreamDescription(audioConfig: AudioConfig) -> AudioStreamBasicDescription {
+        return AudioStreamBasicDescription(
+           mSampleRate: Float64(audioConfig.sampleRate),
+           mFormatID: kAudioFormatLinearPCM,
+           mFormatFlags: AudioFormatFlags(kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked),
+           mBytesPerPacket: UInt32(audioConfig.bytesPerPacket),
+           mFramesPerPacket: UInt32(audioConfig.framesPerPacket),
+           mBytesPerFrame: UInt32(audioConfig.bytesPerFrame),
+           mChannelsPerFrame: UInt32(audioConfig.channelsPerFrame),
+           mBitsPerChannel: UInt32(audioConfig.bitsPerChannel),
+           mReserved: 0
         )
+    }
+    
+    private func prepare() {
+        var format = toAudioStreamDescription(audioConfig: audioConfig)
+        let pointer = Unmanaged<SimpleAudioRecord>.passUnretained(self).toOpaque()
+                
+        AudioQueueNewInput(&format, callback, pointer, nil, nil, 0, &audioQueue)
         
         guard let audioQueue = audioQueue else { return }
         
