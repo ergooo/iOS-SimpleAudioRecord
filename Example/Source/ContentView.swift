@@ -7,10 +7,27 @@
 //
 
 import SwiftUI
+import SimpleAudioRecord
 
 struct ContentView: View {
+    let audioRecord = SimpleAudioRecord()
+    let callback: (Data) -> Void = { data in
+        print(data)
+    }
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Button(action: {
+                self.audioRecord.onBufferReceived = self.callback
+                self.audioRecord.startRecording()
+            }) {
+                Text("Start")
+            }
+            Button(action: {
+                self.audioRecord.stopRecording()
+            }) {
+                Text("Stop")
+            }
+        }
     }
 }
 
