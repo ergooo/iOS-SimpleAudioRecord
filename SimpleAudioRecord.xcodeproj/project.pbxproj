@@ -10,6 +10,7 @@
 		573B8FFE24611804006B2CC6 /* SimpleAudioRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573B8FF424611804006B2CC6 /* SimpleAudioRecord.framework */; };
 		573B900324611804006B2CC6 /* SimpleAudioRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573B900224611804006B2CC6 /* SimpleAudioRecordTests.swift */; };
 		573B900524611804006B2CC6 /* SimpleAudioRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 573B8FF724611804006B2CC6 /* SimpleAudioRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		576C012E2461B04300547A8D /* SimpleAudioRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C012D2461B04300547A8D /* SimpleAudioRecord.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		573B8FFD24611804006B2CC6 /* SimpleAudioRecordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleAudioRecordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		573B900224611804006B2CC6 /* SimpleAudioRecordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAudioRecordTests.swift; sourceTree = "<group>"; };
 		573B900424611804006B2CC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		576C012D2461B04300547A8D /* SimpleAudioRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAudioRecord.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				573B8FF724611804006B2CC6 /* SimpleAudioRecord.h */,
 				573B8FF824611804006B2CC6 /* Info.plist */,
+				576C012D2461B04300547A8D /* SimpleAudioRecord.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				576C012E2461B04300547A8D /* SimpleAudioRecord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +394,7 @@
 		573B900C24611804006B2CC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SimpleAudioRecordTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -407,6 +412,7 @@
 		573B900D24611804006B2CC6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SimpleAudioRecordTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
