@@ -10,23 +10,38 @@ import SwiftUI
 import SimpleAudioRecord
 
 struct ContentView: View {
-    let audioRecord = SimpleAudioRecord()
-    let callback: (Data) -> Void = { data in
-        print(data)
-    }
+    @State var pcm: Data = Data()
+
+    private let audioRecord = SimpleAudioRecord(audioConfig: AudioConfig(sampleRate: 16000, bitsParChannel: 16, channelsPerFrame: 1))
+
     var body: some View {
         VStack {
             Button(action: {
-                self.audioRecord.onBufferReceived = self.callback
+                self.audioRecord.onBufferReceived = { data in
+                    self.pcm.append(data)
+                }
                 self.audioRecord.startRecording()
             }) {
                 Text("Start")
             }
             Button(action: {
                 self.audioRecord.stopRecording()
+                self.save()
             }) {
                 Text("Stop")
             }
+        }
+    }
+    
+    private func save() {
+        let file = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("SimpleAudioRecord.raw")
+        print(file)
+        do {
+            try pcm.write(to: file)
+            print("success")
+        } catch {
+            print(error)
         }
     }
 }

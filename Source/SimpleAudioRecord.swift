@@ -10,11 +10,13 @@ import Foundation
 import AVFoundation
 
 public class SimpleAudioRecord {
-    public init() {}
-    
     public var onBufferReceived: (Data) -> Void = { _ in }
-
+    private let audioConfig: AudioConfig
     private var audioQueue: AudioQueueRef?
+
+    public init(audioConfig: AudioConfig) {
+        self.audioConfig = audioConfig
+    }
 
     public func startRecording() {
         if audioQueue != nil {
@@ -37,15 +39,15 @@ public class SimpleAudioRecord {
     
     private func prepare() {
          var format = AudioStreamBasicDescription(
-             mSampleRate: 48000.0,
-             mFormatID: kAudioFormatLinearPCM,
-             mFormatFlags: AudioFormatFlags(kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked),
-             mBytesPerPacket: 2,
-             mFramesPerPacket: 1,
-             mBytesPerFrame: 2,
-             mChannelsPerFrame: 1,
-             mBitsPerChannel: 16,
-             mReserved: 0
+            mSampleRate: Float64(audioConfig.sampleRate),
+            mFormatID: kAudioFormatLinearPCM,
+            mFormatFlags: AudioFormatFlags(kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked),
+            mBytesPerPacket: UInt32(audioConfig.bytesPerPacket),
+            mFramesPerPacket: UInt32(audioConfig.framesPerPacket),
+            mBytesPerFrame: UInt32(audioConfig.bytesPerFrame),
+            mChannelsPerFrame: UInt32(audioConfig.channelsPerFrame),
+            mBitsPerChannel: UInt32(audioConfig.bitsParChannel),
+            mReserved: 0
          )
                 
         AudioQueueNewInput(
@@ -63,15 +65,15 @@ public class SimpleAudioRecord {
         let bufferSize = getBufferSize()
         for _ in 0..<3 {
             let bufferRef = UnsafeMutablePointer<AudioQueueBufferRef?>.allocate(capacity: 1)
-            AudioQueueAllocateBuffer(audioQueue, bufferSize, bufferRef)
+            AudioQueueAllocateBuffer(audioQueue, UInt32(bufferSize), bufferRef)
             if let buffer = bufferRef.pointee {
                 AudioQueueEnqueueBuffer(audioQueue, buffer, 0, nil)
             }
         }
     }
     
-    private func getBufferSize() -> UInt32 {
-        return 1024 * 2
+    private func getBufferSize() -> Int {
+        return 1024 * audioConfig.bytesPerPacket
     }
     
     private let callback: AudioQueueInputCallback = { inUserData,inAQ,inBuffer,_,_,_ in
