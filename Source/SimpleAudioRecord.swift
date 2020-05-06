@@ -13,6 +13,7 @@ public class SimpleAudioRecord {
     public var onBufferReceived: (Data) -> Void = { _ in }
     private let audioConfig: AudioConfig
     private var audioQueue: AudioQueueRef?
+    private var isRecording = false
 
     public init(audioConfig: AudioConfig) {
         self.audioConfig = audioConfig
@@ -20,22 +21,28 @@ public class SimpleAudioRecord {
 
     /// Start recording. Do nothing when it called during recording.
     public func startRecording() {
-        if audioQueue != nil {
-            return
-        }
-        prepare()
+        synchronized(self) {
+            if isRecording { return }
+            prepare()
 
-        if let audioQueue = audioQueue {
-            AudioQueueStart(audioQueue, nil)
+            if let audioQueue = audioQueue {
+                AudioQueueStart(audioQueue, nil)
+                isRecording = true
+            }
         }
     }
     
     /// Stop recording. Do nothing if not recording.
     public func stopRecording() {
-        if let audioQueue = audioQueue {
-            AudioQueueStop(audioQueue, true)
-            AudioQueueDispose(audioQueue, true)
-            self.audioQueue = nil
+        synchronized(self) {
+            if !isRecording { return }
+            isRecording = false
+
+            if let audioQueue = audioQueue {
+                AudioQueueStop(audioQueue, true)
+                AudioQueueDispose(audioQueue, true)
+                self.audioQueue = nil
+            }
         }
     }
     
@@ -81,11 +88,17 @@ public class SimpleAudioRecord {
     private let callback: AudioQueueInputCallback = { inUserData,inAQ,inBuffer,_,_,_ in
         guard let inUserData = inUserData else { return }
 
-        let inputCallback = Unmanaged<SimpleAudioRecord>.fromOpaque(inUserData).takeUnretainedValue()
-        
+        let audioRecord = Unmanaged<SimpleAudioRecord>.fromOpaque(inUserData).takeUnretainedValue()
+        if !audioRecord.isRecording { return }
         let pcm = Data(bytes: inBuffer.pointee.mAudioData, count: Int(inBuffer.pointee.mAudioDataByteSize))
-        inputCallback.onBufferReceived(pcm)
+        audioRecord.onBufferReceived(pcm)
 
         AudioQueueEnqueueBuffer(inAQ, inBuffer, 0, nil);
+    }
+    
+    private func synchronized(_ obj: AnyObject, f: () -> Void) {
+        objc_sync_enter(obj)
+        f()
+        objc_sync_exit(obj)
     }
 }
